@@ -109,6 +109,7 @@ def test_media_generation_settings_encrypt_keys_and_build_routes(
 
     config = media.harness_config()
     assert config is not None
+    assert config.defer_tools is False
     assert config.default_image_provider == "ark-image"
     assert config.default_video_provider == "wan-video"
     assert [item.id for item in config.providers] == ["ark-image", "wan-video"]

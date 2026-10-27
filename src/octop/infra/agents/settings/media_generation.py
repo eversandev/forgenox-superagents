@@ -596,6 +596,8 @@ class MediaGenerationSettingsStore:
             return None
         provider_ids = {item.id for item in providers}
         return MediaGenerationConfig(
+            # Image/video are core capabilities; expose them without tool discovery.
+            defer_tools=False,
             providers=providers,
             default_image_provider=(
                 view.default_image_provider if view.default_image_provider in provider_ids else None
