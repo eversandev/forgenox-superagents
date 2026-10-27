@@ -348,6 +348,23 @@ def _run_entrypoint(
 
 
 @bash_only
+@pytest.mark.parametrize(
+    ("platform_port", "octop_port", "expected"),
+    [("4123", "8088", "4123"), ("", "9090", "9090"), ("", "", "8088")],
+)
+def test_entrypoint_platform_port_and_fallbacks(
+    tmp_path: Path, platform_port: str, octop_port: str, expected: str
+) -> None:
+    result, calls = _run_entrypoint(
+        tmp_path, extra_env={"PORT": platform_port, "OCTOP_PORT": octop_port}
+    )
+    assert result.returncode == 0, result.stderr
+    assert f"run --host 0.0.0.0 --port {expected}" in calls
+    credential = tmp_path / "data" / ".octop" / "credential.txt"
+    assert f"http://<host>:{expected}" in credential.read_text(encoding="utf-8")
+
+
+@bash_only
 def test_entrypoint_restart_skips_init_for_external_db(tmp_path: Path) -> None:
     """Issue #1866: with PostgreSQL there is no octop.db; a restart must not re-run init."""
     pg_env = {

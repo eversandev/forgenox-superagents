@@ -31,7 +31,9 @@ CREDENTIAL_FILE="${OCTOP_HOME}/credential.txt"
 WIZARD_FILE="${OCTOP_HOME}/octop-login.txt"
 ADMIN_USERNAME="${OCTOP_ADMIN_USERNAME:-admin}"
 ADMIN_DISPLAY_NAME="${OCTOP_ADMIN_DISPLAY_NAME:-Admin}"
-PORT="${OCTOP_PORT:-8088}"
+# Railway provides PORT; keep OCTOP_PORT in sync for config and healthchecks.
+export OCTOP_PORT="${PORT:-${OCTOP_PORT:-8088}}"
+PORT="$OCTOP_PORT"
 
 # 与 src/octop/infra/users/password.py 的 _COMMON_PASSWORDS 保持一致。
 _OCTOP_COMMON_PASSWORDS="password password1 password12 password123 12345678 123456789 qwerty123 admin123 welcome1 letmein1 changeme1 octop123 abc12345 iloveyou1"
