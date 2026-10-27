@@ -247,7 +247,9 @@
     "LOCAL_DOWNLOAD_UNAVAILABLE": "仅在本机打开 Octop 时才能保存到系统「下载」文件夹。",
     "SKILL_PACKAGE_COPY_DENIED": "该技能包的创建者已禁止复制其中的技能。",
     "SKILL_PACKAGE_DOWNLOAD_DENIED": "该技能包已禁止打包下载。",
-    "SKILL_PACKAGE_LOCKED": "此技能复制自锁定策略的技能包，无法在工作区编辑。"
+    "SKILL_PACKAGE_LOCKED": "此技能复制自锁定策略的技能包，无法在工作区编辑。",
+    "REGISTRATION_DISABLED": "未开放公开注册。",
+    "REGISTRATION_RATE_LIMITED": "注册尝试次数过多，请等待一分钟后重试。"
   },
   "nav": {
     "chat": "对话",
@@ -5795,6 +5797,18 @@
       "missingCode": "单点登录响应缺少登录代码。",
       "failed": "无法完成单点登录",
       "backToLogin": "返回登录"
+    },
+    "registration": {
+      "open": "创建账号",
+      "intro": "创建用于个人聊天和专家的普通账号，不包含管理员权限。",
+      "displayName": "显示名称（可选）",
+      "confirm": "确认密码",
+      "required": "请填写此字段。",
+      "usernameHint": "使用3至64个字符：字母、数字、点、下划线或连字符，并以字母或数字开头。",
+      "passwordHint": "使用8至200个字符，且包含字母和数字。",
+      "mismatch": "两次输入的密码不一致。",
+      "success": "账号已创建，请使用用户名和密码登录。",
+      "failed": "无法创建账号，请重试。"
     }
   },
   "invite": {

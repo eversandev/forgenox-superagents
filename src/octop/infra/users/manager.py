@@ -190,6 +190,21 @@ class UserManager:
         """Adopt a user row created outside ``create`` (e.g. invite redeem)."""
         self._users[user.username] = user
 
+    async def create_public_user(
+        self, *, username: str, password: str, display_name: str | None, locale: str
+    ) -> User:
+        """Self-service accounts cannot choose roles, grants, or resource policies."""
+        user = await self.create(
+            username=username,
+            password=password,
+            display_name=display_name,
+            locale=locale,
+            role=Role.USER,
+            permissions=["experts", "token_usage"],
+        )
+        await self.set_resource_policy(user.username, max_agents=1)
+        return user
+
     async def create_from_invite(
         self,
         *,

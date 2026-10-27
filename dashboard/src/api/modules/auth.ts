@@ -142,6 +142,21 @@ function applySetupFlags(status: AuthStatus): AuthStatus {
 }
 
 export const authApi = {
+  getRegistrationStatus: () =>
+    request<{ enabled: boolean }>("/auth/registration"),
+
+  register: (body: {
+    username: string;
+    password: string;
+    display_name?: string;
+    locale: string;
+    captcha_token?: string;
+  }) =>
+    request<{ username: string }>("/auth/register", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
   /** Probe whether the initial admin has been created. */
   getAuthStatus: async (): Promise<AuthStatus> => {
     if (statusInFlight) return statusInFlight;

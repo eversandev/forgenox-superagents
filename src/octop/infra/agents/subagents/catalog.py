@@ -82,7 +82,10 @@ class SubagentDefinition:
 
 
 def _norm(locale: Locale | str | None) -> Locale:
-    return normalize_locale(locale) if locale is not None else FALLBACK_LOCALE
+    normalized = normalize_locale(locale) if locale is not None else FALLBACK_LOCALE
+    # The PT-BR interface uses the original English templates; no translated
+    # prompt library ships yet. Keep those templates available to PT-BR users.
+    return "en" if normalized == "pt-BR" else normalized
 
 
 def slugify(name: str) -> str:

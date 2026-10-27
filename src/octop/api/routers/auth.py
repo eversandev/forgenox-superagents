@@ -7,7 +7,7 @@ import logging
 from typing import Any
 
 from fastapi import APIRouter, Depends, File, Request, Response, UploadFile
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from octop.api.common.client_ip import resolve_client_ip
 from octop.api.deps import current_user, get_server, sign_token
@@ -15,11 +15,13 @@ from octop.infra.auth.captcha import current_env, ensure_captcha, load_effective
 from octop.infra.errors import ErrorCode, OctopError
 from octop.infra.users.email import normalize_email
 from octop.infra.users.permissions import effective_permissions
+from octop.infra.users.registration import RegistrationLimiter
 from octop.infra.utils.locale import normalize_locale
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+_registration_limiter = RegistrationLimiter()
 
 
 def _user_json(user: Any, *, locale: str | None = None) -> dict[str, Any]:
@@ -69,6 +71,65 @@ class LoginBody(BaseModel):
 class CaptchaPublicResponse(BaseModel):
     provider: str
     site_key: str | None = None
+
+
+class RegistrationStatus(BaseModel):
+    enabled: bool
+
+
+class RegisterBody(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    username: str = Field(min_length=3, max_length=64, pattern=r"^[A-Za-z0-9][A-Za-z0-9_.-]+$")
+    password: str = Field(min_length=8, max_length=200)
+    display_name: str | None = Field(default=None, max_length=80)
+    locale: str = Field(default="en", max_length=16)
+    captcha_token: str | None = Field(default=None, max_length=4096)
+
+
+class RegistrationResponse(BaseModel):
+    username: str
+
+
+@router.get(
+    "/registration", summary="Public registration availability", response_model=RegistrationStatus
+)
+async def registration_status(server: Any = Depends(get_server)) -> RegistrationStatus:
+    return RegistrationStatus(enabled=server.services.config.public_registration)
+
+
+@router.post(
+    "/register",
+    status_code=201,
+    summary="Create a standard account",
+    response_model=RegistrationResponse,
+)
+async def register(
+    body: RegisterBody, request: Request, server: Any = Depends(get_server)
+) -> RegistrationResponse:
+    """Create an account after initial setup when public registration is enabled.
+
+    Grants only personal experts and usage access, with one expert per account.
+    Roles and permissions are server-controlled. The configured captcha and
+    per-client/global attempt limits apply. Sign in separately after creation.
+    """
+    if server.user_manager.count() == 0:
+        raise OctopError(ErrorCode.SETUP_REQUIRED, "initial admin not created")
+    if not server.services.config.public_registration:
+        raise OctopError(ErrorCode.REGISTRATION_DISABLED, "public registration disabled")
+    client_ip = _client_ip(request)
+    _registration_limiter.check(client_ip)
+    effective = load_effective(
+        server.services.settings_repo, server.services.secret_repo, current_env()
+    )
+    await ensure_captcha(effective, body.captcha_token, client_ip)
+    user = await server.user_manager.create_public_user(
+        username=body.username,
+        password=body.password,
+        display_name=(body.display_name or "").strip() or None,
+        locale=normalize_locale(body.locale),
+    )
+    return RegistrationResponse(username=user.username)
 
 
 class ChangePasswordBody(BaseModel):

@@ -41,6 +41,18 @@ async def test_preferences_patch_locale_only_still_works(env) -> None:
     assert r.json()["locale"] == "en"
 
 
+async def test_preferences_ptbr_survives_new_login(env) -> None:
+    client, server, auth = env
+    response = await client.patch("/api/preferences", headers=auth, json={"locale": "pt-BR"})
+    assert response.status_code == 200
+    assert response.json()["locale"] == "pt-BR"
+    login = await client.post(
+        "/api/auth/login", json={"username": "admin", "password": "TestPass12"}
+    )
+    assert login.json()["user"]["locale"] == "pt-BR"
+    assert server.services.user_repo.get_by_username("admin").locale == "pt-BR"
+
+
 @pytest.mark.asyncio
 async def test_preferences_patch_requires_one_field(env) -> None:
     client, _srv, auth = env

@@ -9,6 +9,7 @@ vi.mock("../../context/ThemeContext", () => ({
 
 vi.mock("../../api/modules/auth", () => ({
   authApi: {
+    getRegistrationStatus: () => Promise.resolve({ enabled: false }),
     getAuthStatus: () => Promise.resolve({ setup_required: false }),
     getOauthStatus: () => Promise.resolve({ providers: [] }),
     getCaptcha: () => Promise.resolve({ provider: "none" }),

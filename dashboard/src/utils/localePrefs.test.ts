@@ -6,9 +6,26 @@ import {
   speechLocaleFromUi,
   storeUiLocale,
   UI_LOCALE_STORAGE_KEY,
+  normalizeUiLocale,
+  syncDocumentLang,
 } from "./localePrefs";
 
 describe("localePrefs", () => {
+  it("detects, stores and restores Brazilian Portuguese", () => {
+    vi.stubGlobal("navigator", {
+      language: "pt-BR",
+      languages: ["pt-BR", "en"],
+    });
+    expect(detectBrowserLocale()).toBe("pt-BR");
+    expect(normalizeUiLocale("pt_br")).toBe("pt-BR");
+    storeUiLocale("pt-BR");
+    expect(resolveInitialLocale()).toBe("pt-BR");
+    expect(readStoredUiLocale()).toBe("pt-BR");
+    expect(speechLocaleFromUi("pt-BR")).toBe("pt-BR");
+    syncDocumentLang("pt-BR");
+    expect(document.documentElement.lang).toBe("pt-BR");
+    syncDocumentLang("en");
+  });
   afterEach(() => {
     localStorage.clear();
     vi.unstubAllGlobals();

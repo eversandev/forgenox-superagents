@@ -4,16 +4,18 @@ from __future__ import annotations
 
 from typing import Literal
 
-Locale = Literal["zh", "en"]
+Locale = Literal["zh", "en", "pt-BR"]
 
 DEFAULT_LOCALE: Locale = "zh"
-SUPPORTED_LOCALES: tuple[Locale, ...] = ("zh", "en")
+SUPPORTED_LOCALES: tuple[Locale, ...] = ("zh", "en", "pt-BR")
 
 
 def normalize_locale(raw: str | None) -> Locale:
     if not raw:
         return DEFAULT_LOCALE
     lower = raw.lower().replace("_", "-")
+    if lower.startswith("pt"):
+        return "pt-BR"
     if lower.startswith("zh"):
         return "zh"
     return "en"

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Input, Button, Checkbox } from "antd";
+import { Input, Button, Checkbox, Segmented } from "antd";
 import { message } from "@/utils/antdMessage";
 
 import { KeyRound, Lock, User } from "lucide-react";
@@ -19,6 +19,7 @@ import { apiErrorMessage } from "../../utils/apiError";
 import { publicUrl } from "../../utils/publicUrl";
 import { refreshServerLabels } from "../../i18n";
 import { applyUserLocale, applyGuestLocale } from "../../utils/locale";
+import { normalizeUiLocale } from "../../utils/localePrefs";
 import { useTheme } from "../../context/ThemeContext";
 import {
   isSsoPopup,
@@ -32,6 +33,7 @@ import wecomIcon from "../../assets/channels/wecom.svg";
 import googleIcon from "../../assets/providers/google.svg";
 import CaptchaField, { type CaptchaFieldHandle } from "./CaptchaField";
 import ForgotPasswordModal from "./ForgotPasswordModal";
+import RegisterModal from "./RegisterModal";
 import { type PublicCaptchaConfig } from "./captchaAdapters";
 
 function providerLabel(
@@ -74,7 +76,7 @@ function providerIcon(provider: OauthProviderStatus): ReactNode {
 }
 
 export default function LoginPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isDark } = useTheme();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -88,6 +90,8 @@ export default function LoginPage() {
   const [captchaReady, setCaptchaReady] = useState(false);
   const [captchaResetKey, setCaptchaResetKey] = useState(0);
   const [showForgotHelp, setShowForgotHelp] = useState(false);
+  const [registrationEnabled, setRegistrationEnabled] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
   const [captcha, setCaptcha] = useState<PublicCaptchaConfig>({
     provider: "slider",
   });
@@ -109,6 +113,12 @@ export default function LoginPage() {
           return;
         }
         // Only probe OIDC / captcha after setup is done — otherwise lockdown 503s.
+        authApi
+          .getRegistrationStatus()
+          .then((next) => {
+            if (!cancelled) setRegistrationEnabled(next.enabled);
+          })
+          .catch(() => {});
         authApi
           .getOauthStatus()
           .then((next) => {
@@ -286,6 +296,18 @@ export default function LoginPage() {
           }}
         />
 
+        <Segmented
+          aria-label="Language / Idioma"
+          value={normalizeUiLocale(i18n.language)}
+          options={[
+            { label: "Português (Brasil)", value: "pt-BR" },
+            { label: "English", value: "en" },
+          ]}
+          onChange={(value) => {
+            void applyUserLocale(String(value));
+          }}
+        />
+
         <h2
           style={{
             fontSize: 20,
@@ -299,6 +321,7 @@ export default function LoginPage() {
         </h2>
 
         <Input
+          aria-label={t("login.username")}
           prefix={
             <User size={16} style={{ color: "var(--fn-text-quaternary)" }} />
           }
@@ -361,6 +384,25 @@ export default function LoginPage() {
         >
           {t("login.submit")}
         </Button>
+
+        {registrationEnabled && (
+          <Button type="link" onClick={() => setShowRegister(true)}>
+            {t("login.registration.open")}
+          </Button>
+        )}
+        {showRegister && (
+          <RegisterModal
+            captcha={captcha}
+            onClose={() => setShowRegister(false)}
+            onCreated={(name) => {
+              setUsername(name);
+              setPassword("");
+              resetCaptcha();
+              setShowRegister(false);
+              message.success(t("login.registration.success"));
+            }}
+          />
+        )}
 
         <div
           style={{

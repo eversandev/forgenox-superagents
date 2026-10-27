@@ -12,12 +12,12 @@ router = APIRouter()
 
 
 class ToolLabelsOut(BaseModel):
-    locale: str = Field(description="Resolved locale (`zh` or `en`).")
+    locale: str = Field(description="Resolved locale (`zh`, `en` or `pt-BR`).")
     labels: dict[str, str] = Field(description="Tool name → display label.")
 
 
 class SkillLabelsOut(BaseModel):
-    locale: str = Field(description="Resolved locale (`zh` or `en`).")
+    locale: str = Field(description="Resolved locale (`zh`, `en` or `pt-BR`).")
     labels: dict[str, str] = Field(description="Skill slug → display label.")
 
 

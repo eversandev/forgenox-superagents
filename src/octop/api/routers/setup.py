@@ -35,7 +35,7 @@ class SetupBody(BaseModel):
     email: str | None = Field(default=None, max_length=254)
     locale: str | None = Field(
         default=None,
-        description="UI locale for the initial admin (zh|en). Defaults to Accept-Language.",
+        description="UI locale for the initial admin (zh|en|pt-BR). Defaults to Accept-Language.",
     )
 
 

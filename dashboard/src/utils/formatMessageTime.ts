@@ -1,5 +1,11 @@
 /** Epoch-ms helpers shared by chat and memory history views. */
 
+function displayLocale(): string | undefined {
+  return typeof document === "undefined"
+    ? undefined
+    : document.documentElement.lang || undefined;
+}
+
 export function resolveMessageTimestampMs(raw: unknown): number {
   if (typeof raw === "number" && raw > 0) {
     return raw;
@@ -82,7 +88,7 @@ export function formatMessageTime(tsMs: number, timeZone?: string): string {
   const d = new Date(tsMs);
   const now = new Date();
   const tz = timeZoneOptions(timeZone);
-  const hhmm = d.toLocaleTimeString(undefined, {
+  const hhmm = d.toLocaleTimeString(displayLocale(), {
     hour: "2-digit",
     minute: "2-digit",
     ...tz,
@@ -90,7 +96,7 @@ export function formatMessageTime(tsMs: number, timeZone?: string): string {
   if (formatServerYmd(d, timeZone) === formatServerYmd(now, timeZone)) {
     return hhmm;
   }
-  const date = d.toLocaleDateString(undefined, {
+  const date = d.toLocaleDateString(displayLocale(), {
     month: "2-digit",
     day: "2-digit",
     ...tz,
@@ -113,7 +119,7 @@ export function formatServerDateTime(
   timeZone?: string,
 ): string {
   if (!epochSec) return "—";
-  return new Date(epochSec * 1000).toLocaleString(undefined, {
+  return new Date(epochSec * 1000).toLocaleString(displayLocale(), {
     ...SERVER_DATE_TIME_OPTS,
     ...timeZoneOptions(timeZone),
   });
@@ -128,7 +134,7 @@ export function formatServerIsoDateTime(
   if (!trimmed) return "—";
   const d = new Date(trimmed);
   if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleString(undefined, {
+  return d.toLocaleString(displayLocale(), {
     ...SERVER_DATE_TIME_OPTS,
     ...timeZoneOptions(timeZone),
   });

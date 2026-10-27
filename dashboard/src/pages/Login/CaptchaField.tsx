@@ -53,6 +53,7 @@ function vendorGlobal(name: string): VendorApi | undefined {
 
 /** Widget language follows the dashboard UI locale, not the browser's. */
 function vendorLang(lng: string): string {
+  if (lng.toLowerCase().startsWith("pt")) return "pt-BR";
   return lng.startsWith("zh") ? "zh-CN" : "en";
 }
 

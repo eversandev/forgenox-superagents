@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../utils/localePrefs";
 import { getApiUrl } from "./config";
 import i18n from "../i18n";
 import { markNavigatingAway } from "../utils/reloadOnStaleChunk";
@@ -243,7 +244,7 @@ function isAgentScopedPath(path: string): boolean {
 function buildHeaders(path: string, extra?: HeadersInit): HeadersInit {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    "Accept-Language": i18n.language?.startsWith("zh") ? "zh" : "en",
+    "Accept-Language": normalizeUiLocale(i18n.language),
   };
 
   // Apply the global JWT first; the caller's `extra` (including a
@@ -284,7 +285,7 @@ function buildHeaders(path: string, extra?: HeadersInit): HeadersInit {
  */
 function buildAuthHeaders(path: string): Record<string, string> {
   const headers: Record<string, string> = {
-    "Accept-Language": i18n.language?.startsWith("zh") ? "zh" : "en",
+    "Accept-Language": normalizeUiLocale(i18n.language),
   };
   const token = getAuthToken();
   if (token) {

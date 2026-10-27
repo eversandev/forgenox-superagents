@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../../utils/localePrefs";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Segmented, Steps, Typography } from "antd";
@@ -209,10 +210,10 @@ export default function SetupPage() {
   }
 
   const isModelStep = current === STEP_MODEL;
-  const currentLang = i18n.language?.startsWith("zh") ? "zh" : "en";
+  const currentLang = normalizeUiLocale(i18n.language);
 
   const handleLanguageChange = (lang: string) => {
-    const locale: UiLocale = lang.startsWith("zh") ? "zh" : "en";
+    const locale: UiLocale = normalizeUiLocale(lang);
     storeUiLocale(locale);
     void ensureLocaleBundle(locale).then(() => i18n.changeLanguage(locale));
     const setupJwt = wizardSession.loadSetupJwt();
@@ -279,6 +280,7 @@ export default function SetupPage() {
               options={[
                 { label: t("account.langZh"), value: "zh" },
                 { label: t("account.langEn"), value: "en" },
+                { label: "Português (Brasil)", value: "pt-BR" },
               ]}
               onChange={handleLanguageChange}
             />

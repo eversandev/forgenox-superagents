@@ -24,8 +24,16 @@ def _resolve_node(table: dict[str, Any], key: str) -> str | None:
 @lru_cache(maxsize=1)
 def _load_all() -> dict[Locale, dict[str, Any]]:
     out: dict[Locale, dict[str, Any]] = {}
-    for loc in ("en", "zh"):
-        raw = resources.files("octop.i18n").joinpath(f"{loc}.json").read_text(encoding="utf-8")
+    for loc in ("en", "zh", "pt-BR"):
+        try:
+            raw = resources.files("octop.i18n").joinpath(f"{loc}.json").read_text(encoding="utf-8")
+        except FileNotFoundError:
+            if loc != "pt-BR":
+                raise
+            # Older resources can be installed while the running updater still
+            # needs to render a result. Keep the English fallback available.
+            out[loc] = {}
+            continue
         out[loc] = json.loads(raw)
     return out
 

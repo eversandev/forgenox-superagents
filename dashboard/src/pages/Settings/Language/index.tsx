@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../../../utils/localePrefs";
 import { useTranslation } from "react-i18next";
 import { Radio, Space } from "antd";
 import { message } from "@/utils/antdMessage";
@@ -6,6 +7,7 @@ import { preferencesApi } from "../../../api/modules/preferences";
 import { applyUserLocale } from "../../../utils/locale";
 
 const languages = [
+  { value: "pt-BR", label: "Português (Brasil)" },
   { value: "en", label: "English" },
   { value: "zh", label: "简体中文" },
 ];
@@ -47,7 +49,7 @@ export default function LanguagePage() {
       </p>
 
       <Radio.Group
-        value={i18n.language?.startsWith("zh") ? "zh" : "en"}
+        value={normalizeUiLocale(i18n.language)}
         onChange={(e) => void handleChange(e.target.value)}
       >
         <Space direction="vertical" size={12}>

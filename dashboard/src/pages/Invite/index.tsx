@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../../utils/localePrefs";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button, Form, Input, Segmented, Steps, Typography } from "antd";
@@ -77,10 +78,10 @@ export default function InvitePage() {
     if (initialCode) setCode(initialCode);
   }, [initialCode]);
 
-  const currentLang = i18n.language?.startsWith("zh") ? "zh" : "en";
+  const currentLang = normalizeUiLocale(i18n.language);
 
   const handleLanguageChange = (lang: string) => {
-    const locale: UiLocale = lang.startsWith("zh") ? "zh" : "en";
+    const locale: UiLocale = normalizeUiLocale(lang);
     storeUiLocale(locale);
     void ensureLocaleBundle(locale).then(() => i18n.changeLanguage(locale));
   };
@@ -151,6 +152,7 @@ export default function InvitePage() {
               options={[
                 { label: t("account.langZh"), value: "zh" },
                 { label: t("account.langEn"), value: "en" },
+                { label: "Português (Brasil)", value: "pt-BR" },
               ]}
               onChange={handleLanguageChange}
             />

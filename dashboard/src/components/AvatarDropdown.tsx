@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../utils/localePrefs";
 import { useState, useCallback, useEffect, type ReactNode } from "react";
 import {
   Drawer,
@@ -259,7 +260,7 @@ export default function AvatarDropdown({
     }
   };
 
-  const currentLang = i18n.language?.startsWith("zh") ? "zh" : "en";
+  const currentLang = normalizeUiLocale(i18n.language);
   const roleLabel =
     role === "admin" ? t("account.roleAdmin") : t("account.roleUser");
 
@@ -629,6 +630,7 @@ export default function AvatarDropdown({
           options={[
             { label: t("account.langZh"), value: "zh" },
             { label: t("account.langEn"), value: "en" },
+            { label: "Português (Brasil)", value: "pt-BR" },
           ]}
           onChange={(val) => handleLocaleChange(val as string)}
         />
