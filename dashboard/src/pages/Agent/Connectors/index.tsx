@@ -1692,6 +1692,7 @@ function ConnectorConfigDrawer({
               const isSecret = field.secret || field.field_type === "password";
               const input = isSecret ? (
                 <Input.Password
+                  autoComplete="new-password"
                   placeholder={
                     hasStoredCredentials && field.secret
                       ? t("connectors.secretPlaceholder", "留空表示不修改")
@@ -1699,7 +1700,10 @@ function ConnectorConfigDrawer({
                   }
                 />
               ) : (
-                <Input placeholder={field.placeholder ?? undefined} />
+                <Input
+                  autoComplete="off"
+                  placeholder={field.placeholder ?? undefined}
+                />
               );
               return (
                 <Form.Item
