@@ -1,3 +1,4 @@
+import type { UiLocale } from "../../../utils/localePrefs";
 // dashboard/src/pages/Experts/components/CreateFromExpertDrawer.tsx
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -119,15 +120,12 @@ export type CreateFromTemplateSource =
 interface CreateFromExpertDrawerProps {
   open: boolean;
   source: CreateFromTemplateSource | null;
-  lang: "zh" | "en";
+  lang: UiLocale;
   onClose: () => void;
   onCreated: (agentId: string, agentName: string) => void;
 }
 
-function sourceTitle(
-  source: CreateFromTemplateSource,
-  lang: "zh" | "en",
-): string {
+function sourceTitle(source: CreateFromTemplateSource, lang: UiLocale): string {
   if (source.kind === "builtin") {
     return pickLocale(source.expert.label, lang) || source.expert.id;
   }
@@ -139,7 +137,7 @@ function sourceTitle(
 
 function sourceDefaults(
   source: CreateFromTemplateSource,
-  lang: "zh" | "en",
+  lang: UiLocale,
 ): {
   name: string;
   description: string;

@@ -1,3 +1,4 @@
+import type { UiLocale } from "../../../utils/localePrefs";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { Button, Drawer, Input, Segmented, Spin, Tag } from "antd";
@@ -30,18 +31,18 @@ import { iconForName } from "./iconForName";
 import styles from "../index.module.less";
 
 interface ExpertMarketTabProps {
-  lang: "zh" | "en";
+  lang: UiLocale;
   installedExpertIds: Set<string>;
   onRequestCreate: (expert: MarketExpert) => void;
 }
 
 const SCENE_ALL = "";
 
-function descOf(expert: MarketExpert, lang: "zh" | "en"): string {
+function descOf(expert: MarketExpert, lang: UiLocale): string {
   return pickLocale(expert.description, lang) || "";
 }
 
-function labelOf(expert: MarketExpert, lang: "zh" | "en"): string {
+function labelOf(expert: MarketExpert, lang: UiLocale): string {
   return pickLocale(expert.label, lang) || expert.slug;
 }
 
@@ -60,13 +61,13 @@ function sceneLabel(scene: string, t: TFunction): string {
 
 function promptText(
   prompt: ExpertMarketQuickPrompt,
-  lang: "zh" | "en",
+  lang: UiLocale,
   field: "title" | "description",
 ): string {
   return pickLocale(prompt[field], lang) || "";
 }
 
-function taskExampleTexts(expert: MarketExpert, lang: "zh" | "en"): string[] {
+function taskExampleTexts(expert: MarketExpert, lang: UiLocale): string[] {
   const raw = expert.task_examples;
   if (!raw) return [];
   const primary = lang === "zh" ? raw.zh : raw.en;
@@ -171,11 +172,7 @@ export default function ExpertMarketTab({
   );
 
   const workflowDoc = useMemo(() => {
-    const raw =
-      selected?.content?.[lang] ||
-      selected?.content?.zh ||
-      selected?.content?.en ||
-      "";
+    const raw = pickLocale(selected?.content, lang);
     if (!raw.trim()) {
       return {
         body: "",

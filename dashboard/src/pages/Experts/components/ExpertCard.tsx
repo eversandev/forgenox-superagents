@@ -1,3 +1,4 @@
+import type { UiLocale } from "../../../utils/localePrefs";
 // dashboard/src/pages/Experts/components/ExpertCard.tsx
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
@@ -23,7 +24,7 @@ export interface ExpertSummary {
 
 interface ExpertCardProps {
   expert: ExpertSummary;
-  lang: "zh" | "en";
+  lang: UiLocale;
   isInstalled: boolean;
   onCreate: (expert: ExpertSummary) => void;
 }

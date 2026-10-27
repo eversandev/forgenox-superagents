@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../../utils/localePrefs";
 /**
  * Experts page — redesigned as Agents Management Centre.
  *
@@ -138,7 +139,7 @@ function installedExpertIdsFromAgents(
 export default function ExpertsPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const lang: "zh" | "en" = i18n.language?.startsWith("zh") ? "zh" : "en";
+  const lang = normalizeUiLocale(i18n.language);
   const isMobile = useIsMobile();
   const { agents, refresh: refreshAgents } = useAgent();
   const currentUser = useCurrentUser();
