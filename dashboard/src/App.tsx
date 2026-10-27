@@ -62,9 +62,9 @@ function ThemedApp() {
 
   useEffect(() => installDesktopExternalLinks(), []);
 
-  // Set document title based on current language
+  // Keep the product name consistent across interface languages.
   useEffect(() => {
-    document.title = t("app.pageTitle");
+    document.title = "ForgeNox SuperAgents";
   }, [t]);
 
   const themeConfig = {

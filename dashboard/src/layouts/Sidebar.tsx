@@ -511,12 +511,14 @@ export default function Sidebar({
     <>
       <img
         src={isRailCollapsed ? "/pwa-192.png" : wordmarkSrc}
-        alt="Octop"
+        alt="ForgeNox"
         style={{
           height: isRailCollapsed ? 32 : isMobile ? 38 : 36,
           width: isRailCollapsed ? 32 : "auto",
           maxWidth: isRailCollapsed ? 32 : isMobile ? 190 : 160,
           objectFit: "contain",
+          background: "#06101c",
+          padding: 4,
           display: "block",
           flexShrink: 0,
           borderRadius: isRailCollapsed ? 8 : undefined,

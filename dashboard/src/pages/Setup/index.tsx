@@ -264,7 +264,8 @@ export default function SetupPage() {
                     ? publicUrl("logo_horizontal_white.png")
                     : publicUrl("logo_horizontal_dark.png")
                 }
-                alt="Octop"
+                alt="ForgeNox"
+                style={{ background: "#06101c", padding: 4, borderRadius: 6 }}
                 className={styles.wizardHeaderLogo}
               />
               <div className={styles.wizardHeaderBrandText}>

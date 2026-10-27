@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Octop",
-  "short_name": "Octop",
-  "description": "Smarter self-hosted AI assistant — multi-user, multi-agent",
+  "name": "ForgeNox SuperAgents",
+  "short_name": "ForgeNox",
+  "description": "Super Agentes de IA — português e inglês",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -10,7 +10,7 @@
   "background_color": "#0f1117",
   "theme_color": "#ffffff",
   "prefer_related_applications": false,
-  "lang": "zh-CN",
+  "lang": "pt-BR",
   "icons": [
     {
       "src": "/pwa-192.png",

@@ -286,12 +286,14 @@ export default function LoginPage() {
               ? publicUrl("logo_horizontal_white.png")
               : publicUrl("logo_horizontal_dark.png")
           }
-          alt="Octop"
+          alt="ForgeNox"
           style={{
             height: 48,
             width: "auto",
             maxWidth: 260,
             objectFit: "contain",
+            background: "#06101c",
+            padding: 4,
             display: "block",
           }}
         />

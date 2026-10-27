@@ -80,12 +80,14 @@ export default function Header({ onToggle, isMobile }: HeaderProps) {
         )}
         <img
           src={mobileLogoSrc}
-          alt="octop"
+          alt="ForgeNox"
           style={{
             height: 36,
             width: "auto",
             maxWidth: 160,
             objectFit: "contain",
+            background: "#06101c",
+            padding: 4,
             flexShrink: 0,
             display: "block",
           }}
