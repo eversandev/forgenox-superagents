@@ -2,6 +2,37 @@
   "version": 1,
   "connectors": [
     {
+      "kind": "composio",
+      "name": {
+        "en": "Composio",
+        "zh": "Composio",
+        "pt-BR": "Composio — apps globais"
+      },
+      "description": {
+        "en": "Connect global apps through Composio MCP. Authorize each app with your own account.",
+        "zh": "通过 Composio MCP 连接全球应用，并使用自己的账户逐一授权。",
+        "pt-BR": "Conecte aplicativos globais pelo MCP do Composio. Autorize cada aplicativo com sua própria conta."
+      },
+      "auth_kind": "oauth2",
+      "doc_url": "https://docs.composio.dev/docs/composio-connect",
+      "icon": "plug",
+      "color": "#f97316",
+      "phase": "available",
+      "mcp_mode": "remote",
+      "category": "productivity",
+      "remote_transport": "streamable_http",
+      "guide_url": "https://docs.composio.dev/docs/composio-connect",
+      "auth_hint": {
+        "en": "Authorize Composio first. Then ask your Super Agent to find and connect the app you need. Each app requires its own consent.",
+        "zh": "先授权 Composio，再让智能体查找并连接所需应用。每个应用都需要单独授权。",
+        "pt-BR": "Autorize o Composio. Depois, peça ao Super Agente para buscar e conectar o aplicativo desejado. Cada aplicativo exige sua autorização."
+      },
+      "oauth_issuer": "https://connect.composio.dev",
+      "mcp_url": "https://connect.composio.dev/mcp",
+      "oauth_scopes": "openid profile email offline_access",
+      "mcp_user_agent": "forgenox-superagents/0.1"
+    },
+    {
       "kind": "tencent-docs",
       "name": { "en": "Tencent Docs", "zh": "腾讯文档" },
       "description": {

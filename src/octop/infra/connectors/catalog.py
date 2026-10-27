@@ -42,9 +42,13 @@ class LocalizedText:
 
     en: str
     zh: str
+    pt_br: str = ""
 
     def resolve(self, locale: str = "en") -> str:
-        return self.zh if normalize_locale(locale) == "zh" else self.en
+        normalized = normalize_locale(locale)
+        if normalized == "pt-BR":
+            return self.pt_br or self.en
+        return self.zh if normalized == "zh" else self.en
 
 
 @dataclass(frozen=True)
@@ -151,7 +155,7 @@ def _localized(raw: object, field: str) -> LocalizedText:
     if isinstance(raw, dict):
         en = _require_str(raw.get("en"), f"{field}.en")
         zh = _require_str(raw.get("zh"), f"{field}.zh")
-        return LocalizedText(en=en, zh=zh)
+        return LocalizedText(en=en, zh=zh, pt_br=str(raw.get("pt-BR") or "").strip())
     raise ValueError(f"catalog field {field!r} must be a string or {{en, zh}}")
 
 

@@ -80,3 +80,19 @@ def test_docs_catalog_table_matches_json() -> None:
         for entry in list_catalog()
     ]
     assert _docs_catalog_table_rows(text) == expected
+
+
+def test_composio_uses_official_remote_mcp_and_localized_copy() -> None:
+    from octop.infra.connectors.catalog import get_mcp_oauth_remote
+
+    entry = get_mcp_oauth_remote("composio")
+    assert entry is not None
+    assert entry.mcp_url == "https://connect.composio.dev/mcp"
+    assert entry.oauth_issuer == "https://connect.composio.dev"
+    assert entry.remote_transport == "streamable_http"
+    pt = catalog_entry_to_dict(entry, locale="pt-BR")
+    assert pt["name"] == "Composio — apps globais"
+    assert "sua própria conta" in str(pt["description"])
+    assert "sua autorização" in str(pt["auth_hint"])
+    assert catalog_entry_to_dict(entry, locale="en")["name"] == "Composio"
+    assert entry.name.resolve("pt_BR") == pt["name"]
