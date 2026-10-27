@@ -292,8 +292,6 @@ export default function LoginPage() {
             width: "auto",
             maxWidth: 260,
             objectFit: "contain",
-            background: "#06101c",
-            padding: 4,
             display: "block",
           }}
         />

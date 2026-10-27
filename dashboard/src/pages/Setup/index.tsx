@@ -265,7 +265,6 @@ export default function SetupPage() {
                     : publicUrl("logo_horizontal_dark.png")
                 }
                 alt="ForgeNox"
-                style={{ background: "#06101c", padding: 4, borderRadius: 6 }}
                 className={styles.wizardHeaderLogo}
               />
               <div className={styles.wizardHeaderBrandText}>

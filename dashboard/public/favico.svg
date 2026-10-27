@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ForgeNox">
-  <defs>
-    <linearGradient id="fnx" x1="10" y1="9" x2="53" y2="55" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#32ddff"/>
-      <stop offset="0.53" stop-color="#087bff"/>
-      <stop offset="1" stop-color="#1422b8"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="#06101c"/>
-  <path d="M13 47V20.4c0-4.7 5.8-6.9 9-3.5l20.2 21.4c3.2 3.4 8.8 1.1 8.8-3.5V17" fill="none" stroke="url(#fnx)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13 29.5V20c0-4.7 5.8-6.9 9-3.5l20.2 21.4c3.2 3.4 8.8 1.1 8.8-3.5V27" fill="none" stroke="#23d6ff" stroke-opacity=".42" stroke-width="3.2" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 164"><style>.brand {fill:#18191c} @media(prefers-color-scheme:dark){.brand{fill:#eceef2}}</style><g transform="translate(16 0)"><defs><mask id="cut"><rect width="132" height="164" fill="white"/><path d="M62 0H102L82 25H122L46 88L67 41H31L42 25H50Z" fill="black"/></mask></defs><path d="M0 10H122V41H31V71H102V102H31V153H0Z" class="brand" mask="url(#cut)"/></g></svg>

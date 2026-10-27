@@ -517,8 +517,6 @@ export default function Sidebar({
           width: isRailCollapsed ? 32 : "auto",
           maxWidth: isRailCollapsed ? 32 : isMobile ? 190 : 160,
           objectFit: "contain",
-          background: "#06101c",
-          padding: 4,
           display: "block",
           flexShrink: 0,
           borderRadius: isRailCollapsed ? 8 : undefined,
