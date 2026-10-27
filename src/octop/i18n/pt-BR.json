@@ -411,9 +411,9 @@
     "SETUP_RATE_LIMITED": "Muitas tentativas de senha de configuração.",
     "SETUP_TOKEN_INVALID": "A sessão de configuração é inválida ou expirou.",
     "AGENT_NOT_FOUND": "Agente não encontrado.",
-    "EXPERT_TEMPLATE_NOT_FOUND": "Modelo de especialista não encontrado.",
-    "DEFAULT_EXPERT_FAILED": "Não foi possível criar o especialista padrão.",
-    "AGENT_NOT_RUNNING": "Este especialista não está em execução.",
+    "EXPERT_TEMPLATE_NOT_FOUND": "Modelo de Super Agente não encontrado.",
+    "DEFAULT_EXPERT_FAILED": "Não foi possível criar o Super Agente padrão.",
+    "AGENT_NOT_RUNNING": "Este Super Agente não está em execução.",
     "CHECKPOINT_DELETE_FAILED": "Os dados da conversa não foram apagados.",
     "THREAD_TURN_ACTIVE": "Interrompa a tarefa em andamento antes de excluir esta conversa.",
     "AGENT_FAILED": "Não foi possível iniciar o agente.",
@@ -449,7 +449,7 @@
     "BRIDGE_PEER_UNREACHABLE": "Não consegui alcançar o par Octop Confirmar a situação URL É acessível, credenciais estão corretas, e o par tem suporte de nuvem collab (necessidades /api/bridge/ws) NAT, iniciar a ligação do lado que pode chegar ao outro.",
     "BRIDGE_NOT_CONNECTED": "Cloud Collab não está conectada, reconecte-se ou verifique se o par está online.",
     "BRIDGE_TUNNEL_FAILED": "O link pode ter caído, reconectar e tentar novamente.",
-    "BRIDGE_REMOTE_UNSUPPORTED": "Essa ação não está disponível no especialista em pares Octop.",
+    "BRIDGE_REMOTE_UNSUPPORTED": "Essa ação não está disponível no Super Agente em pares Octop.",
     "BRIDGE_DISPLAY_NAME_TAKEN": "Mostrar o nome \"{{name}}\"já está em uso, escolha outro.",
     "BRIDGE_PEER_ALREADY_LINKED": "Esta conta de pares já está ligada como \"{name}Use a conexão existente.",
     "BRIDGE_CONNECTION_LIMIT": "No máximo {limit} Exclua uma para adicionar outra.",
@@ -477,7 +477,7 @@
     "SKILL_PACKAGE_NAME_TAKEN": "Pacote de habilidades {name} Já existe.",
     "SKILL_PACKAGE_BACKEND_UNSUPPORTED": "Pacotes de habilidades atualmente suportam apenas \"Ambiente local completo (sistema de arquivos + shell)\" ou \"Sistema de arquivos locais (sem comandos de shell)\", com armazenamento root / (POSIX) ou a raiz do espaço de trabalho do agente (default do Windows).",
     "ACP_BACKEND_UNSUPPORTED": "Este agente tem uma caixa de areia ativada, então os corredores externos não podem ser habilitados ou editados aqui IDE O polvo ACP também não é afetado.",
-    "PUBLISHED_EXPERT_SLUG_TAKEN": "Lâmina de especialista publicada {slug} Já existe.",
+    "PUBLISHED_EXPERT_SLUG_TAKEN": "Lâmina de Super Agente publicada {slug} Já existe.",
     "PUBLISHED_EXPERT_ALREADY_EXISTS": "Este agente já foi publicado como \"{name}Refresque o modelo publicado.",
     "OIDC_BAD_REQUEST": "Inválido OIDC Pedido: {detail}",
     "SSO_IDENTITY_TAKEN": "Este login já está ligado a outro Octop Conta.",
@@ -486,7 +486,7 @@
     "LDAP_UNAVAILABLE": "O LDAP Cheque o endereço do servidor e ligue as credenciais.",
     "LDAP_USER_NOT_PROVISIONED": "Esta conta de diretório não tem Octop Peça a um administrador para criar um ou habilitar o provisionamento automático.",
     "LDAP_GROUP_NOT_ALLOWED": "Esta conta de diretório não está em um grupo autorizado a entrar, peça a um administrador para adicioná-lo a um grupo permitido.",
-    "EXPERT_MARKET_FAILED": "O mercado de especialistas está temporariamente indisponível.",
+    "EXPERT_MARKET_FAILED": "O mercado de Super Agentes está temporariamente indisponível.",
     "SKILLHUB_SSL_FAILED": "Pedido de SkillHub falhou: Python SSL Erro detectado, na tentativa do MacOS `brew reinstall openssl@3`Ou verifique seus certificados de CA do sistema.",
     "DESKTOP_SESSION_LIMIT": "Muitos fluxos de desktop remotos simultâneos (máx {limit}Feche outras conexões e tente de novo.",
     "DESKTOP_CAPTURE_FAILED": "A captura de tela falhou repetidamente nos servidores Linux reiniciando a área de trabalho virtual, no macOS concedendo gravação de tela e acessibilidade, e então reconectando.",
@@ -520,14 +520,14 @@
     "WORKSPACE_ROOT_RESTRICTED": "A raiz de armazenamento selecionada está fora do diretório permitido para esta conta.",
     "WORKSPACE_ROOT_CONTAINER_UNSUPPORTED": "A raiz de armazenamento permitida não pode ser definida enquanto Octop está correndo em um contêiner.",
     "TOKEN_QUOTA_EXCEEDED": "Você atingiu a cota de tokens da sua conta ({used}/{quota}). Peça ao administrador para aumentar o limite.",
-    "AGENT_QUOTA_EXCEEDED": "Você atingiu o limite de especialistas da sua conta ({used}/{quota}). Peça ao administrador para aumentar o limite.",
+    "AGENT_QUOTA_EXCEEDED": "Você atingiu o limite de Super Agentes da sua conta ({used}/{quota}). Peça ao administrador para aumentar o limite.",
     "CAPTCHA_REQUIRED": "Conclua a verificação de segurança.",
     "CAPTCHA_FAILED": "A verificação de segurança falhou. Tente novamente.",
     "CONFIG_FILE_CORRUPT": "Não é possível atualizar {path}O arquivo não é válido JSON ({detail}Conserte a sintaxe e tente novamente, nenhuma configuração foi alterada.",
     "TEAM_NOT_FOUND": "Equipe não encontrada.",
     "TEAM_MEMBERS_TOO_FEW": "Uma equipe precisa de pelo menos dois membros.",
-    "TEAM_MEMBER_INVALID": "Peritos, outros times, e peritos deletados não são permitidos.",
-    "TEAM_MEMBER_BUSY": "Esse especialista tem um trabalho em equipe, espere até terminar.",
+    "TEAM_MEMBER_INVALID": "Super Agentes, outros times, e Super Agentes deletados não são permitidos.",
+    "TEAM_MEMBER_BUSY": "Esse Super Agente tem um trabalho em equipe, espere até terminar.",
     "TEAM_NOT_SHAREABLE": "Equipes não podem ser compartilhadas nesta versão.",
     "LOCAL_DOWNLOAD_UNAVAILABLE": "Salvar para a pasta de downloads do host só está disponível quando Octop está aberto neste computador.",
     "SKILL_PACKAGE_COPY_DENIED": "O criador deste pacote de habilidades desativou copiar suas habilidades.",
@@ -636,9 +636,9 @@
     "cronjob_delete": "Apague o trabalho do Cron",
     "cronjob_run_now": "Faça o trabalho do Cron agora",
     "search_knowledge": "Buscar a base de conhecimento",
-    "agent_list": "Liste os especialistas",
-    "ask_agent": "Pergunte a um especialista",
-    "call_agent": "Chame o especialista",
+    "agent_list": "Liste os Super Agentes",
+    "ask_agent": "Pergunte a um Super Agente",
+    "call_agent": "Chame o Super Agente",
     "acp_runner": "ACP Agente externo",
     "browser_use": "Use o navegador",
     "browser_control": "Controle do navegador",
@@ -745,9 +745,9 @@
     }
   },
   "agent_errors": {
-    "no_models_configured": "Não há modelos configurados, vá para Admin. → Model Management para adicionar um provedor e habilitar este especialista novamente.",
+    "no_models_configured": "Não há modelos configurados, vá para Admin. → Model Management para adicionar um provedor e habilitar este Super Agente novamente.",
     "model_ref_unavailable": "O modelo padrão está indisponível ou desativado.",
-    "start_timeout": "Este especialista demorou muito para começar (infra-estrutura de armazenamento I/O)."
+    "start_timeout": "Este Super Agente demorou muito para começar (infra-estrutura de armazenamento I/O)."
   },
   "stream_errors": {
     "stream_stall": "O modelo parou de enviar conteúdo enquanto a conexão ficou aberta, clique em tentar novamente, ou tente novamente mais tarde com outro modelo, se isso acontecer com frequência, verifique o status do provedor ou peça a um administrador para rever as configurações de tempo-limite do fluxo.",
@@ -762,7 +762,7 @@
     "model_call_failed": "Se continuar falhando, verifique as configurações do modelo ou mude de modelo.",
     "model_call_failed_detail": "A chamada do modelo falhou {detail}",
     "model_retry_prompt": "O modelo API Não finja que a tarefa foi bem sucedida.\n\nO que aconteceu? {guidance}\n\nExplique isso ao usuário em sua língua e sugira o próximo passo.\n\nDetalhes técnicos: {detail}",
-    "path_outside_root": "O caminho do arquivo está fora da raiz de armazenamento deste especialista, então não pode ser lido ou escrito. Use um caminho sob a raiz de armazenamento, ou amplie a raiz de armazenamento em configurações especializadas (no Windows, defina um caminho de unidade explícito como D: / octop-data)."
+    "path_outside_root": "O caminho do arquivo está fora da raiz de armazenamento deste Super Agente, então não pode ser lido ou escrito. Use um caminho sob a raiz de armazenamento, ou amplie a raiz de armazenamento em configurações especializadas (no Windows, defina um caminho de unidade explícito como D: / octop-data)."
   },
   "attachment": {
     "header": "[Anexo] {filename}",
@@ -825,16 +825,16 @@
   "usage_export": {
     "sheet_detail": "Detalhe",
     "sheet_by_day": "De dia",
-    "sheet_by_agent": "Por especialista",
+    "sheet_by_agent": "Por Super Agente",
     "sheet_by_model": "Por modelo",
     "chart_daily": "Tokens diários",
-    "chart_by_agent": "Tokens por especialista",
+    "chart_by_agent": "Tokens por Super Agente",
     "chart_by_model": "Tokens por modelo",
     "col_time": "Tempo",
     "col_user_id": "ID do usuário",
     "col_username": "Nome de usuário",
-    "col_agent_id": "ID do especialista",
-    "col_agent_name": "Nome de especialista",
+    "col_agent_id": "ID do Super Agente",
+    "col_agent_name": "Nome de Super Agente",
     "col_thread_id": "ID do thread",
     "col_model": "Modelo",
     "col_input_tokens": "Input tokens",
@@ -925,14 +925,14 @@
     "memory_disabled": "Este agente não tem memória ativada, então não há banco de dados para manter.",
     "agent_not_running": "Este agente não está funcionando ou falhou em iniciar, iniciar com sucesso antes da manutenção, sem manutenção.",
     "postgres_unsupported": "Este agente usa {backend} Memória. PostgreSQL Este comando ainda não suporta o uso de dados duplicados ou de armazenamento e pode precisar de manutenção com base em seu uso real PostgreSQL Emagrecimento; ele atualmente suporta SQLite Nenhuma manutenção foi feita, e você pode continuar conversando.",
-    "inspecting": "Verificando os registros expirados deste especialista",
+    "inspecting": "Verificando os registros expirados deste Super Agente",
     "cleaning": "Limpando registros de backup",
     "postgres_result": "Limpo {candidates} Rejeitados candidatos e {journal} Memórias ativas e histórico de conversação são preservadas, veja configurações avançadas de memória para detalhes de backup.",
-    "draining": "Esperando pelo trabalho deste especialista",
-    "validating": "Validando backup e propriedade de especialistas",
-    "backing_up_current": "Apoiando o estado atual deste especialista",
-    "restoring": "Restabelecendo os dados desse especialista",
-    "restarting": "Recarregando esse especialista",
+    "draining": "Esperando pelo trabalho deste Super Agente",
+    "validating": "Validando backup e propriedade de Super Agentes",
+    "backing_up_current": "Apoiando o estado atual deste Super Agente",
+    "restoring": "Restabelecendo os dados desse Super Agente",
+    "restarting": "Recarregando esse Super Agente",
     "restore_result": "Recuperado o backup selecionado, pré-restauração do backup de segurança: {backup}"
   },
   "teams": {
@@ -944,8 +944,8 @@
     "channel_wrapup": "[Host encerramento] {text}",
     "channel_dispatched": "Perguntado {name} Para lidar com isso, por favor espere...",
     "host_briefing": "[Host despacho - não faça o trabalho você mesmo]\nAs mensagens do usuário chegam aqui primeiro, a intenção, o escopo, as restrições, e a entrega possível, uma pergunta esclarecedora, se um fato chave está faltando, para o trabalho real, reescreva uma tarefa autocontida para esse membro antes de perguntar: objetivo, escopo, formato de entrega e contexto necessário, nunca cole a redação do usuário sem alterações, a tarefa de cada membro, responda saudações ou esclarecimentos em uma ou duas frases, depois que o agente perguntar retornar, não repita que você designou alguém, se esta volta for uma Despertar, encerrar ou reatribuir por esse aviso não repita a mesma tarefa.",
-    "member_briefing": "[Atribuição de equipe, não uma pergunta de usuário direto]\nVocê é um membro desta equipe de especialistas, o anfitrião já processou o pedido do usuário e lhe designou esta tarefa, faça o trabalho e entregue o resultado, não trate o texto original do usuário como uma pergunta individual para você, e não fale como o anfitrião.",
-    "member_briefing_with_history": "[Atribuição de equipe, não uma pergunta de usuário direto]\nVocê é um membro desta equipe de especialistas, o anfitrião já processou o pedido do usuário e lhe designou esta tarefa, faça o trabalho e entregue o resultado, não trate o texto original do usuário como uma pergunta individual para você, e não fale como o anfitrião, a transcrição do grupo abaixo é apenas de fundo.\n\n{history}"
+    "member_briefing": "[Atribuição de equipe, não uma pergunta de usuário direto]\nVocê é um membro desta equipe de Super Agentes, o anfitrião já processou o pedido do usuário e lhe designou esta tarefa, faça o trabalho e entregue o resultado, não trate o texto original do usuário como uma pergunta individual para você, e não fale como o anfitrião.",
+    "member_briefing_with_history": "[Atribuição de equipe, não uma pergunta de usuário direto]\nVocê é um membro desta equipe de Super Agentes, o anfitrião já processou o pedido do usuário e lhe designou esta tarefa, faça o trabalho e entregue o resultado, não trate o texto original do usuário como uma pergunta individual para você, e não fale como o anfitrião, a transcrição do grupo abaixo é apenas de fundo.\n\n{history}"
   },
   "conversation_mode": {
     "plan_ready": "Plano salvo em `{path}`Responda \"executar o plano\" para executá-lo, ou continuar a editar no modo Plano.",
@@ -968,19 +968,19 @@
     }
   },
   "memory_storage": {
-    "postgres": "PostgreSQL A manutenção por especialista está indisponível, peça a um administrador para organizar a manutenção do banco de dados.",
-    "shared_sqlite": "Isto SQLite O arquivo é compartilhado por vários especialistas e não pode ser mantido apenas para esse especialista.",
+    "postgres": "PostgreSQL A manutenção por Super Agente está indisponível, peça a um administrador para organizar a manutenção do banco de dados.",
+    "shared_sqlite": "Isto SQLite O arquivo é compartilhado por vários Super Agentes e não pode ser mantido apenas para esse Super Agente.",
     "incompatible": "O tempo de execução da memória não suporta manutenção de armazenamento ao vivo.",
-    "shared_namespace": "Várias identidades de especialistas mapeiam o mesmo espaço de memória.",
-    "namespace_mismatch": "O especialista não combina com o espaço de memória, recarregue o especialista antes de continuar.",
-    "namespace_busy": "Outro trabalho de manutenção é usar a memória desse especialista.",
+    "shared_namespace": "Várias identidades de Super Agentes mapeiam o mesmo espaço de memória.",
+    "namespace_mismatch": "O Super Agente não combina com o espaço de memória, recarregue o Super Agente antes de continuar.",
+    "namespace_busy": "Outro trabalho de manutenção é usar a memória desse Super Agente.",
     "delete_backup_failed": "Não conseguiu apagar o backup, verificar as permissões e tentar novamente.",
-    "delete_sqlite_only": "Excluir backups requer um dedicado SQLite É uma loja de memória para esse especialista.",
-    "invalid_backup": "O backup está faltando ou não é um backup elegível para este especialista.",
-    "backup_scope": "O backup pertence a um especialista diferente ou tem um esquema incompatível.",
+    "delete_sqlite_only": "Excluir backups requer um dedicado SQLite É uma loja de memória para esse Super Agente.",
+    "invalid_backup": "O backup está faltando ou não é um backup elegível para este Super Agente.",
+    "backup_scope": "O backup pertence a um Super Agente diferente ou tem um esquema incompatível.",
     "restore_changed": "O tempo de execução ou a loja mudou, inspecione novamente antes de tentar novamente.",
-    "restore_reload_failed": "O estágio de restauração de dados terminou, mas reiniciar o perito falhou, o backup de segurança foi retido, reinicie o perito e inspecione o resultado.",
-    "restore_sqlite_only": "Restaurar requer um dedicado SQLite É uma loja de memória para esse especialista."
+    "restore_reload_failed": "O estágio de restauração de dados terminou, mas reiniciar o Super Agente falhou, o backup de segurança foi retido, reinicie o Super Agente e inspecione o resultado.",
+    "restore_sqlite_only": "Restaurar requer um dedicado SQLite É uma loja de memória para esse Super Agente."
   },
   "laya": {
     "install_start": "Instalando Laya em um ambiente isolado...",
@@ -1015,19 +1015,19 @@
       },
       "expert": {
         "description": {
-          "system": "Você escreve uma cópia curta para um perfil de agente especialista em IA.\nRegras difíceis:\n- Saída ONLY O texto da descrição na língua alvo deste alerta.\n- Mantenha-o em 1-2 frases concisas (cerca de 40–120 caracteres para chinês, ou 12–40 palavras para inglês).\n- Sem marcação, rótulos, citações, saudações, ou comentários meta.\n- Não invente capacidades não relacionadas.",
-          "user_polish": "Nome do especialista: {name}\nMantenha o mesmo idioma que o rascunho, quando possível, caso contrário use a linguagem desta instrução.\n\n---\n{text}\n---",
-          "user_generate": "Nome do especialista: {name}\nEscreva uma breve descrição para este especialista baseado apenas no nome."
+          "system": "Você escreve uma cópia curta para um perfil de agente Super Agente em IA.\nRegras difíceis:\n- Saída ONLY O texto da descrição na língua alvo deste alerta.\n- Mantenha-o em 1-2 frases concisas (cerca de 40–120 caracteres para chinês, ou 12–40 palavras para inglês).\n- Sem marcação, rótulos, citações, saudações, ou comentários meta.\n- Não invente capacidades não relacionadas.",
+          "user_polish": "Nome do Super Agente: {name}\nMantenha o mesmo idioma que o rascunho, quando possível, caso contrário use a linguagem desta instrução.\n\n---\n{text}\n---",
+          "user_generate": "Nome do Super Agente: {name}\nEscreva uma breve descrição para este Super Agente baseado apenas no nome."
         },
         "welcome_message": {
-          "system": "Você escreve uma breve linha de título de boas-vindas mostrada em uma página de bate-papo de especialistas em IA.\nRegras difíceis:\n- Saída ONLY O texto do título de boas-vindas na língua alvo deste alerta.\n- Mantenha-o em uma curta frase amigável (cerca de 12–40 caracteres chineses, ou 6–18 palavras em inglês).\nSem marcação, rótulos, citações ou comentários meta.",
-          "user_polish": "Nome do especialista: {name}\nMantenha o mesmo idioma que o rascunho, quando possível, ou use o idioma desta instrução.\n\n---\n{text}\n---",
-          "user_generate": "Nome do especialista: {name}\nEscreva um título de boas-vindas para este especialista baseado apenas no nome."
+          "system": "Você escreve uma breve linha de título de boas-vindas mostrada em uma página de bate-papo de Super Agentes em IA.\nRegras difíceis:\n- Saída ONLY O texto do título de boas-vindas na língua alvo deste alerta.\n- Mantenha-o em uma curta frase amigável (cerca de 12–40 caracteres chineses, ou 6–18 palavras em inglês).\nSem marcação, rótulos, citações ou comentários meta.",
+          "user_polish": "Nome do Super Agente: {name}\nMantenha o mesmo idioma que o rascunho, quando possível, ou use o idioma desta instrução.\n\n---\n{text}\n---",
+          "user_generate": "Nome do Super Agente: {name}\nEscreva um título de boas-vindas para este Super Agente baseado apenas no nome."
         }
       },
       "team": {
         "description": {
-          "system": "Você escreve uma cópia curta para um perfil da equipe de peritos em IA.\nRegras difíceis:\n- Saída ONLY O texto da descrição na língua alvo deste alerta.\n- Mantenha em 1-2 frases concisas.\n- Sem marcação, rótulos, citações, saudações, ou comentários meta.",
+          "system": "Você escreve uma cópia curta para um perfil da equipe de Super Agentes em IA.\nRegras difíceis:\n- Saída ONLY O texto da descrição na língua alvo deste alerta.\n- Mantenha em 1-2 frases concisas.\n- Sem marcação, rótulos, citações, saudações, ou comentários meta.",
           "user_polish": "Nome do time: {name}\nMantenha o mesmo idioma do rascunho quando possível, caso contrário use o idioma desta instrução.\n\n---\n{text}\n---",
           "user_generate": "Nome do time: {name}\nEscreva uma breve descrição para esta equipe baseada apenas no nome."
         },
