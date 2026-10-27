@@ -34,6 +34,7 @@ are updating `catalog.json` in the same change.
 
 | Kind | Name | 名称 | Category | Auth | MCP mode |
 |------|------|------|----------|------|----------|
+| `composio-api` | Composio — project API key | Composio — 项目 API Key | productivity | custom_fields | remote |
 | `composio` | Composio | Composio | productivity | oauth2 | remote |
 | `tencent-docs` | Tencent Docs | 腾讯文档 | office | personal_token | remote |
 | `tencent-ima` | Tencent IMA | 腾讯 IMA | knowledge | api_key | gateway |

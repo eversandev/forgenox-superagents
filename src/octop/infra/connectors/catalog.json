@@ -2,6 +2,60 @@
   "version": 1,
   "connectors": [
     {
+      "kind": "composio-api",
+      "name": {
+        "en": "Composio — project API key",
+        "zh": "Composio — 项目 API Key",
+        "pt-BR": "Composio — chave de API"
+      },
+      "description": {
+        "en": "Use your Composio project API key and a dedicated MCP session.",
+        "zh": "使用 Composio 项目 API Key 和独立 MCP 会话。",
+        "pt-BR": "Use a chave de API do seu projeto Composio com uma sessão MCP própria."
+      },
+      "auth_kind": "custom_fields",
+      "doc_url": "https://docs.composio.dev/docs/sessions-via-mcp",
+      "icon": "plug",
+      "color": "#f97316",
+      "phase": "available",
+      "mcp_mode": "remote",
+      "remote_transport": "streamable_http",
+      "category": "productivity",
+      "auth_hint": {
+        "en": "Paste a project API key with session management and execution permissions. App accounts still require authorization. Keep personal connections private.",
+        "zh": "输入具有会话管理和执行权限的项目 API Key。应用账户仍需单独授权。",
+        "pt-BR": "Cole uma chave de projeto com permissões de gerenciamento e execução de sessões. As contas dos aplicativos ainda precisam de autorização. Para contas pessoais, escolha Só eu."
+      },
+      "credential_fields": [
+        {
+          "key": "api_key",
+          "label": {
+            "en": "Composio project API key",
+            "zh": "Composio 项目 API Key",
+            "pt-BR": "Chave de API do projeto Composio"
+          },
+          "field_type": "password",
+          "required": true,
+          "secret": true
+        },
+        {
+          "key": "user_id",
+          "label": {
+            "en": "Composio user ID (optional)",
+            "zh": "Composio 用户 ID（可选）",
+            "pt-BR": "ID do usuário no Composio (opcional)"
+          },
+          "field_type": "text",
+          "required": false,
+          "help": {
+            "en": "Leave empty for a separate ForgeNox identity. To reuse existing connections, enter their exact Composio user ID.",
+            "zh": "留空创建独立的 ForgeNox 身份；复用连接时填写其 Composio 用户 ID。",
+            "pt-BR": "Deixe vazio para criar uma identidade ForgeNox própria. Para usar conexões existentes, informe o mesmo ID de usuário usado no Composio."
+          }
+        }
+      ]
+    },
+    {
       "kind": "composio",
       "name": {
         "en": "Composio",

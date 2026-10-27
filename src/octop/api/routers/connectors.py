@@ -372,6 +372,12 @@ async def _prepare_credentials(
     entry = get_catalog_entry(kind)
     if entry is None:
         raise ValueError(f"unknown connector kind: {kind}")
+    if kind == "composio-api":
+        from octop.infra.connectors.composio_project import (  # noqa: PLC0415
+            prepare_project_credentials,
+        )
+
+        return await prepare_project_credentials(credentials)
     cred_payload = dict(credentials)
     if entry.auth_kind == "auth_code" and cred_payload.get("code"):
         code = str(cred_payload.pop("code")).strip()

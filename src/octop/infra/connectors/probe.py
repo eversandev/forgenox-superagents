@@ -343,10 +343,18 @@ async def probe_streamable_http_mcp(
     from mcp import ClientSession
     from mcp.client.streamable_http import streamablehttp_client
 
+    client_options: dict[str, Any] = {}
+    if kind == "composio-api":
+        from octop.infra.connectors.composio_project import project_http_client  # noqa: PLC0415
+
+        client_options["httpx_client_factory"] = project_http_client
+
     for attempt in range(2):
         try:
             async with (
-                streamablehttp_client(url, headers=headers, timeout=20, sse_read_timeout=20) as (
+                streamablehttp_client(
+                    url, headers=headers, timeout=20, sse_read_timeout=20, **client_options
+                ) as (
                     read,
                     write,
                     _get_session_id,

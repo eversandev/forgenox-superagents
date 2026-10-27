@@ -131,6 +131,20 @@ def _build_stdio_spec(entry: ConnectorCatalogEntry, creds: dict[str, Any]) -> di
 
 
 def _build_remote_spec(entry: ConnectorCatalogEntry, creds: dict[str, Any]) -> dict[str, Any]:
+    if entry.kind == "composio-api":
+        from octop.infra.connectors.composio_project import (  # noqa: PLC0415
+            normalize_project_credentials,
+            project_http_client,
+            validate_project_mcp_url,
+        )
+
+        normalized = normalize_project_credentials(creds)
+        return {
+            "transport": "http",
+            "url": validate_project_mcp_url(normalized.get("mcp_url", "")),
+            "headers": {**_mcp_http_headers(), "x-api-key": normalized["api_key"]},
+            "httpx_client_factory": project_http_client,
+        }
     if entry.kind == "didi":
         api_key = str(creds.get("api_key") or "").strip()
         return {
@@ -473,6 +487,12 @@ def validate_create_credentials(
         }
 
     if entry.auth_kind == "custom_fields":
+        if entry.kind == "composio-api":
+            from octop.infra.connectors.composio_project import (  # noqa: PLC0415
+                normalize_project_credentials,
+            )
+
+            return normalize_project_credentials(credentials)
         if entry.kind == "agently-cli":
             # A caller must never select another instance's CLI credential directory.
             return {"internal_token": new_internal_token(), "cli_config_key": new_ulid()}

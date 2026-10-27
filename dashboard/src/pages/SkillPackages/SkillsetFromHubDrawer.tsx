@@ -1,3 +1,4 @@
+import { normalizeUiLocale } from "../../utils/localePrefs";
 import { useEffect, useRef, useState } from "react";
 import { Button, Drawer, Empty, Spin } from "antd";
 import { Download } from "lucide-react";
@@ -31,7 +32,7 @@ export function SkillsetFromHubDrawer({
   const [importingSlug, setImportingSlug] = useState<string | null>(null);
   const tRef = useRef(t);
   tRef.current = t;
-  const lang = i18n.language.startsWith("zh") ? "zh" : "en";
+  const lang = normalizeUiLocale(i18n.language);
 
   useEffect(() => {
     if (!open) return;
