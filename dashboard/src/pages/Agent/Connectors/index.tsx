@@ -37,11 +37,8 @@ import {
 } from "../../../utils/permissions";
 import { apiErrorMessage } from "../../../utils/apiError";
 import { copyText } from "../../../utils/copyText";
-import {
-  clearFormDraft,
-  loadFormDraft,
-  saveFormDraft,
-} from "../../../utils/formDraft";
+import { clearFormDraft } from "../../../utils/formDraft";
+import { loadConnectorDraft, saveConnectorDraft } from "./connectorFormDraft";
 import {
   connectorsApi,
   type ConnectorAuthInfo,
@@ -378,6 +375,9 @@ function ConnectorConfigDrawer({
   const canInstallCli = userCanAny(user, PERM.connectors);
   const [form] = Form.useForm();
   const [saving, setSaving] = useState(false);
+  const [editableCredentials, setEditableCredentials] = useState<Set<string>>(
+    () => new Set(),
+  );
   const [probing, setProbing] = useState(false);
   const [authorizing, setAuthorizing] = useState(false);
   const [openingAuthorize, setOpeningAuthorize] = useState(false);
@@ -421,7 +421,7 @@ function ConnectorConfigDrawer({
 
   const applyConnectorDraft = useCallback(() => {
     if (!draftScope) return;
-    const draft = loadFormDraft(draftScope);
+    const draft = loadConnectorDraft(draftScope);
     if (!draft) return;
     restoringDraftRef.current = true;
     form.setFieldsValue(draft);
@@ -430,6 +430,7 @@ function ConnectorConfigDrawer({
 
   useEffect(() => {
     if (!open || !entry) return;
+    setEditableCredentials(new Set());
     setShowManual(false);
     setAuthInfo(null);
     setInstanceDetail(null);
@@ -843,7 +844,7 @@ function ConnectorConfigDrawer({
       } else {
         form.setFieldValue("api_key", text);
       }
-      saveFormDraft(
+      saveConnectorDraft(
         draftScope,
         form.getFieldsValue() as Record<string, unknown>,
       );
@@ -879,7 +880,7 @@ function ConnectorConfigDrawer({
         return;
       }
       form.setFieldValue("base_url", result.base_url);
-      saveFormDraft(
+      saveConnectorDraft(
         draftScope,
         form.getFieldsValue() as Record<string, unknown>,
       );
@@ -1648,7 +1649,7 @@ function ConnectorConfigDrawer({
           layout="vertical"
           onValuesChange={(_, all) => {
             if (!restoringDraftRef.current && draftScope) {
-              saveFormDraft(
+              saveConnectorDraft(
                 draftScope,
                 all as unknown as Record<string, unknown>,
               );
@@ -1693,6 +1694,12 @@ function ConnectorConfigDrawer({
               const input = isSecret ? (
                 <Input.Password
                   autoComplete="new-password"
+                  readOnly={!editableCredentials.has(field.key)}
+                  onFocus={() =>
+                    setEditableCredentials((previous) =>
+                      new Set(previous).add(field.key),
+                    )
+                  }
                   placeholder={
                     hasStoredCredentials && field.secret
                       ? t("connectors.secretPlaceholder", "留空表示不修改")
@@ -1702,6 +1709,12 @@ function ConnectorConfigDrawer({
               ) : (
                 <Input
                   autoComplete="off"
+                  readOnly={!editableCredentials.has(field.key)}
+                  onFocus={() =>
+                    setEditableCredentials((previous) =>
+                      new Set(previous).add(field.key),
+                    )
+                  }
                   placeholder={field.placeholder ?? undefined}
                 />
               );
